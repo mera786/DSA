@@ -1,0 +1,52 @@
+🌟 OOPs Principles ?                                                                        
+OOP = Object-Oriented Programming
+It focuses on objects, not just functions or logic.
+Languages using OOP:
+👉 Java, C++, Python, C#, Kotlin, Swift etc.
+
+⭐ Why OOP?
+OOP helps you to:
+✔ write clean and readable code
+✔ reuse code easily
+✔ make applications secure
+✔ divide big code into small parts (modularity)
+✔ make code easier to maintain
+✔ model real-world things (like Car, Student, Employee)
+
+🧩 There are 4 Main OOP Principles
+ Encapsulation
+ Inheritance
+ Polymorphism
+ Abstraction
+
+--------------------------------------------------------------------------------- 1️⃣ Encapsulation ---------------------------------------------------------------------------------------
+What?
+Wrapping data (variables) + methods (functions) together into a single unit → called Class. 
+Why?
+✔ To protect data
+✔ To control who can access what
+✔ To prevent accidental changes
+✔ To make code secure & manageable
+🧩 Encapsulation Achieved in Two Ways :
+   a. Field-level Encapsulation, To protect variables (data):
+      ✔ How to achieve?
+               - Make variables private
+               - Provide public getters/setters to control access
+   b. Method-level Encapsulation, To protect methods (logic):
+      ✔ How to achieve?
+                - Use access modifiers to control which methods are visible:
+                                                       | Modifier    | Meaning                                     |
+                                                       | ----------- | ------------------------------------------- |
+                                                       | `private`   | Completely hidden (best for internal logic) |
+                                                       | (default)   | Accessible inside same package              |
+                                                       | `protected` | Accessible in subclasses                    |
+                                                       | `public`    | Accessible by everyone                      |
+Note:- isme hum data ko hee hide kr dete hai or apne according decide krte hai acess control.
+
+
+GETTERS && SETTERS :
+
+1. getters:- it helps to read private things, if that things are public so easly anybody can access like obj.age, syntax int getAge(), here name can be anything
+2. setters:- it helps to set private things, syntax void setAge(int age), here name can be anything
+
+Note:- useful situtation like, apke pass requirement hai jisme read-only ya write-only ya 2read-only and 3 write-only class bnao.
