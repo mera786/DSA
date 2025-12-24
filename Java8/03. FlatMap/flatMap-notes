@@ -53,32 +53,52 @@ Input:
 Output: [a, b] 
 
 (6) Flattening a List of Lists with Different Sizes? 
-Input: [[1], [2, 3, 4], [5, 6]] 
+Input: 
+    List<List<Integer>> list = Arrays.asList(
+            Arrays.asList(1), 
+            Arrays.asList(2, 3, 4), 
+            Arrays.asList(5, 6));
 Output: [1, 2, 3, 4, 5, 6]
 
 
 (7) Flattening a List of Characters? 
-Input: [['a', 'b'], ['c', 'd']] 
+Input:
+    List<List<Character>> list = Arrays.asList(
+            Arrays.asList('a', 'b'),
+            Arrays.asList('c', 'd')
+    );
 Output: [a, b, c, d] 
 
 (8) Flattening and Removing Duplicates?
-Input: [[1, 2], [2, 3], [3, 4]] 
+Input: 
+    List<List<Integer>> list = Arrays.asList(
+            Arrays.asList(1, 2),
+            Arrays.asList(2, 3),
+            Arrays.asList(3, 4)
+    );
 Output: [1, 2, 3, 4] 
 
 
 (9) Flattening Nested Maps? 
-Input: [{"a": [1, 2]}, {"b": [3, 4]}] 
+Input: 
+List<Map<String, List<Integer>>> data = Arrays.asList(
+        new HashMap<String, List<Integer>>() {{
+            put("a", Arrays.asList(1, 2));
+        }},
+        new HashMap<String, List<Integer>>() {{
+            put("b", Arrays.asList(3, 4));
+        }}
+);
 Output: [1, 2, 3, 4] 
 
 
 (10)   Flattening a List of Lists of Booleans? 
-Input: [[true, false], [false, true]] 
+Input: 
+List<List<Boolean>> data = Arrays.asList(
+        Arrays.asList(true, false),
+        Arrays.asList(false, true)
+);
 Output: [true, false, false, true] 
-
-
-(11)  Flattening a List of Integer Ranges? 
-Input: [[1, 2, 3], [4, 5]] 
-Output: [1, 2, 3, 4, 5] 
 
 
                                                                 MEDIUM (1-10)
