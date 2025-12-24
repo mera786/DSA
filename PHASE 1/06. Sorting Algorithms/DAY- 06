@@ -1,0 +1,38 @@
+6. Radix Sort :
+Radix Sort is a non-comparison based sorting algorithm that sorts numbers digit by digit instead of comparing whole numbers. It processes numbers from least significant digit (LSD) to most significant digit (MSD)
+(or sometimes MSD to LSD, depending on implementation).
+Radix Sort sorts elements by grouping them according to each digit’s position (units, tens, hundreds, etc.), using a stable sorting technique (like Counting Sort) at each step.
+Example
+Input:
+[170, 45, 75, 90, 802, 24, 2, 66]
+Steps:
+  - Sort by units digit
+  - Sort by tens digit
+  - Sort by hundreds digit
+Final Output:
+[2, 24, 45, 66, 75, 90, 170, 802]
+Key Points :
+🚫 No comparisons (<, >) used
+✅ Uses Counting Sort internally
+⏱ Time Complexity: O(d × (n + k))
+   d = number of digits
+   n = number of elements
+   k = range of digits (0–9)
+💾 Space Complexity: O(n + k)
+✔ Works best for integers / fixed-length strings.
+⚙️ Steps to Implement Radix Sort (LSD approach) :
+   1️⃣ Find the maximum element in the array.
+                     This helps determine how many digit positions need to be processed.
+   2️⃣ Initialize digit place value as 1 (units place).
+   3️⃣ Repeat for each digit place while (max / digit) > 0:
+                     Apply Counting Sort based on the current digit.
+                     Extract the digit using: (number / digit) % 10
+   4️⃣ Inside Counting Sort (for each digit):
+                     Create a count array of size 10 (digits 0–9).
+                     Count the frequency of each digit.
+                     Convert the count array into prefix sum (cumulative count).
+                     Build the output array from right to left to maintain stability.
+                     Copy the sorted output back to the original array.
+   5️⃣ Move to the next digit by multiplying: 
+                     digit = digit × 10
+   6️⃣ Stop when all digit places of the maximum number are processed.
