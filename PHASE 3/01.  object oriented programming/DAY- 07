@@ -1,0 +1,82 @@
+------------------------------------------------------------ How to Compare Objects ---------------------------------------------------------------------------------------------------
+why ?
+2 objects ko compare krne ke liye based on their fields, comparator and comparable ka use krte hai.agr Integers and Strings ho then these classes implement Comparable and define their natural ordering.
+straight forward hai numbers ko, strings ko easily compare kr payenge but jab custom way me sorting krni ho to comparable & comparator use krte hai.
+
+🟢 Comparable — Natural Order : 
+Object khud batata hai ki mujhe kaise compare karo.
+- Package java.lang
+- Method compareTo()
+- jab v compareTo() method ko override kro to 'this' and 'that' do chijo ko dhyan me rkho.
+
+🔵 Comparator — Custom / External Order :
+Bahar se rule do → mujhe is tarah sort karo. 
+- Multiple sorting logics possible
+- Class modify nahi karni padti.
+- Package java.util 
+- Method compare()
+why ?
+- Java ko khud se kuch nahi pata hota, classes hi Java ko rule batati hain via Comparable.
+- Agar Comparable implement na ho, Compile-time error dega Java bolega: bhai compare ka rule nahi diya, Isliye Comparator aya taki Rule bahar se de diya jaye.
+
+Compare method return value :
+Jab bhi Java do objects ko compare karta hai, method int me value return karta hai:
+| Return value       | Meaning                   |
+| ------------------ | ------------------------- |
+| **Negative (-ve)** | `a` comes **before** `b`  |
+| **Positive (+ve)** | `a` comes **after** `b`   |
+| **Zero (0)**       | `a` and `b` are **equal** |
+
+Scenario :
+let's take and array list of integers having elements like, 
+        ArrayList<Integer> arr = new ArrayList<>();
+        arr.add(70);
+        arr.add(10);
+        arr.add(51);
+        arr.add(21);
+        arr.add(17);
+        arr.add(15);
+sort on the basis of unit digit and if unit digits is same then print the smaller number first. ?
+Output like, 10 70 21 51 15 17 // correct.
+
+follow up question :
+you have student list - jisme jo v student highest marks le rha hai wo sabse phle ayega agar don ka marks same hai to jiska rollNum chhota hai wo phle ayega?
+Input: 
+    ArrayList<Student> list = new ArrayList<>();
+        list.add(new Student(90,20));
+        list.add(new Student(90,10));
+        list.add(new Student(88,22));
+        list.add(new Student(88,24));
+        list.add(new Student(96,2));
+        list.add(new Student(64,1));
+
+
+------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+
+Relation-ship between java classes :
+                                         CLASS
+                                           |
+        --------------------------------------------------------------------------------
+        |                                                                              |
+   Inheritance (IS-A Relationship)                                              Association (HAS-A Relationship)
+        |                                                                              |
+  ---------------------------                                          ----------------------------------------
+  |            |            |                                          |                                      |
+Single     Multilevel    Hierarchical                           Aggregation                           Composition
+Inheritance Inheritance  Inheritance                          (Loose Coupling)                     (Strong Coupling)
+
+
+Example: 
+                        Car (class)
+                        |
+        --------------------------------
+        | {Has-A}                       | {Has-A} 
+  (MusicPlayer)                      (Engine)
+
+Note:- jo hum ek class ki reference kisi dusre class me bnate hai (MyClass my) ya new keyword se object ek class ki dusre class me (MyClass m = new MyClass) ye Has-A relationship hoti hai.
+
+Aggregation : if two classes indivisually exist, evenif having in has-A relationship, they called aggregation.
+          eg - car and music player, agr music player car se nikal denge to music v bja skte hai and car v chl skti hai bina music player ki
+
+Composition: if two classes can't exist indivisually having in Has-A relationship, they called composition.
+          eg - car and engine , agr car se engine hta denge to car chl hee nhi skti hai.
