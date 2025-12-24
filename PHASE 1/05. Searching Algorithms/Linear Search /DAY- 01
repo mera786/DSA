@@ -1,0 +1,113 @@
+
+Q1. 🔍 What is Linear Search?
+Linear search is a basic searching technique in which we check each element one by one in a list or array until we find the target value (or reach the end).
+🧩 Example:
+Array = [10, 20, 30, 40, 50]
+Target = 30
+We check:
+       10 → not match
+       20 → not match
+       30 → ✅ match found at index 2
+Note: In Linear Search, the order of elements does not matter — you can search in unsorted or sorted arrays that's the reason it's benificial for this scinario.
+n
+
+Q2. given an array like, arr = {3,1,3,4,5,3}; now you have to do following questions :
+    Qa. find first occurrence of 3 and return it's index ?
+    Qb. find all occurrence of 3 and return their indexes ?  here direct print indices .
+    Qc. find last occurrence of 3 and return it's index ?
+
+
+Q3. Follow up question :
+find maximum value in the array ?
+arr = {1,-2,-9,11,15,4,8};
+hint :
+1. -> consider first index at maximum and then compare 
+or
+2. -> intialize with possible mimum value ?
+
+Q4. Follow up question :
+find 2nd maximum value in the array ?
+arr = {1,-2,-9,11,15,4,8};
+
+
+Q5. Follow up question :
+find minimum value in the array ?
+arr = {1,-2,-9,11,15,4,8};
+hint :
+1. -> consider first index at minimum and then compare 
+or
+2. -> intialize with possible maximum value ?
+
+Q6. Follow up question :
+find 2nd minimum value in the array ?
+arr = {1,-2,-9,11,15,4,8};
+
+
+WHAT IS SUBARRAY ?
+Array ka continuous / contiguous part. 
+Example: 
+arr = [1, 2, 3]
+Subarrays:
+[1]
+[1,2]
+[1,2,3]
+[2]
+[2,3]
+[3]
+Formula : 
+Total subarrays  =  n(n+1)/2
+	​
+
+WRITE CODE TO PRINT ALL POSSIBLE SUB-ARRAY ?
+Input:
+int [] arr = {1, 2, 3};
+Output:
+1
+1 2
+1 2 3
+2
+2 3
+3
+
+
+
+Brute Force to find largest Continous sub-array maximum sum using loops?
+Input: 
+  int[] arr = {2, -3, 5, -1, 6, -2, 4};
+Output:
+12
+
+
+
+Q7. find Largest continuous subarray ka maximum sum using kadanes algorithm?
+Input: 
+  int[] arr = {2, -3, 5, -1, 6, -2, 4};
+Output:
+12
+
+
+****************************** LINEAR SEARCH ON MATRIX ***********************************************************  START FROM HERE....
+
+Q1. given an 2D array like, 
+ int [][] arr = {
+                  {2,4,1,5,1},
+                  {6,7,3,4,2},
+                  {8,1,2,2,3},
+                  {5,5,5,8,4},
+                               };
+  Qa. find first occurrence in 2D where target = 4 ?
+   Hint: intialize two variable rowIndex = -1; , columnIndex = -1; and then use 2 loops then using condition compare target also exiting from both loop use labelled?
+   Qb. find last occurrence in 2D where target = 4 ?
+   Qc. find all occurrences in 2D array where target = 2 ? 
+   Hint : find column size, based on column size create 2D array , use two loops.
+
+Q2. find maximum sub-array sum  using kadanes algorithm?
+ int [][] arr = {
+                  {2,4,1,5,1},
+                  {6,7,3,4,2},
+                  {8,1,2,2,3},
+                  {5,5,5,8,4},
+                               };
+ Hint : use two loops, two variable maxSum and currSum then compare .
+ 
+ 
