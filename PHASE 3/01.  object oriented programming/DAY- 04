@@ -1,0 +1,132 @@
+---------------------------------------------------------------------- 3️⃣ What is Polymorphism ? -----------------------------------------------------------------------------------------
+it is one of the principle of oops which is the combination of two words Polymorphism : poly = many,  morphism = form , Polymorphism is an OOP principle where the same method call on a parent reference 
+executes different method implementations depending on the runtime object. 
+Requirment for Polymorphism:
+                   ✔ Inheritance required
+                   ✔ Overriding required
+                   ✔ Runtime decision (dynamic dispatch). Parent reference = Child object
+              Sirf methods ke saath possible.
+Allowed Combination (Polymorphism) :  Parent p = new Child(); // ✅
+Kyun?
+   - Parent reference sirf parent ke methods dekhta hai
+   - Actual object child ka hota hai
+   - Runtime pe child ka overridden method call hota hai
+✅ Parent reference ka fayda :
+                                    Car car;
+                                          if(type.equals("electric")) {
+                                                  car = new ElectricCar();
+                                          } else {
+                                                 car = new PetrolCar();
+                                          }
+car.drive(); // SAME LINE, DIFFERENT BEHAVIOR
+✔ Runtime decision
+✔ No code duplication
+✔ Open for extension, closed for modification (SOLID)
+
+Case Analysisi - 1 :
+----------------------
+Parent p = new Parent();
+Child c = (Child) p; // Runtime error ClassCastException
+ reson :=> Reference cast ho sakta hai, object cast nahi hota.
+
+Case Analysisi - 2 :
+----------------------
+Parent p = new Child();  // Upcasting
+Child c = (Child) p;    // Safe downcasting
+ reson :=> Actual object = Child, Reference change ho raha hai, object nahi.
+
+Note:- Java me overloading ek independent language feature,Polymorphism ka subset nahi. 
+       Requirment for Overloading :  
+                             ✔ Same name
+                             ✔ Different parameter list
+                             ✔ Decision compile time pe
+              Ye methods aur constructors dono pe apply hota hai.
+              
+🔷 Types of Polymorphism :
+| Type                          | When?                    | How?               | Also called          |
+| ----------------------------- | ------------------------ | ------------------ | -------------------- |
+| **Compile-time Polymorphism** | Compile time decide hota | Method Overloading | Static Polymorphism  |
+| **Runtime Polymorphism**      | Runtime decide hota      | Method Overriding  | Dynamic Polymorphism |
+
+🔷 Why?
+✔ Code flexibility
+✔ Behavior change allowed
+✔ Achieves loose coupling (after abstraction)
+✔ Improves scalability & maintainability
+
+🅰️ Method Overloading (Compile-time Polymorphism) :
+Rule:-
+------
+  1. Same method name 
+  2. No. of parameters are same(data types different)                             eg- (String email,boolean true) or ( int age,char ch).
+  3. data types same ( order different )                                          eg- (String name,int age) or (int age,String name)
+  4. no. of parameters are different then well & good , already polymorphism.      eg-(double price) or (float f,String password).
+✔ Return type may differ,
+❌ Only return type change → Not allowed (parameters must differ).
+
+🅱️ Method Overriding (Runtime Polymorphism)
+Child class changes parent’s method behavior
+✔ Same name
+✔ Same parameters
+✔ Same return type
+✔ Must be in different classes with inheritance
+
+ANALYSIS CASE-1:
+      . . . .
+      .  P  .
+      . . . .
+        ⬆     
+     . . . .   
+     .  C  .   
+     . . . .
+P p = new P(); // OK
+C c = new C (); // OK
+P p2 = new C (); // OK becoz Parent class refers to child class
+C c2 = new P(); // Not Ok becoz child class can't refere to parent class
+
+p.displayP(); // OK
+c.displayP(); // OK
+c.displayC(); // OK
+p2.displayP(); // OK
+p.displayC(); // Not ok becoz compile time error dega.
+
+
+
+🔥 Runtime Polymorphism Example (Object Reference Game!) :
+
+class Animal {
+    void sound(){ System.out.println("Animal sound"); }
+}
+
+class Dog extends Animal {
+    @Override
+    void sound(){ System.out.println("Bark"); }
+}
+----------------------------
+Animal a = new Dog();
+a.sound(); // Bark
+Reference type = Animal
+Object type = Dog ⇒ Run-time pe Decide hota hai , jiska object h or usne override kiya same parent ke method ko to whi chlega , agr nhi kiya h to parent wala chlega.
+
+
+📌 Overriding Rules :
+ Access Modifier | Overriden method ki visibility more restricted nahi rakh sakta,hmesa child ki visibility parent se jyda hogi.
+
+ Exception       | Checked exception → same or narrower 
+
+ Static methods  | ❌ Override nahi hote → agr dono static h to method hiding hoga,agr non-static hai to overriding hoga agr dono me se ek koi static and dusra non-static then error dega, compile time error                               
+
+Private methods | ❌ Override nahi hote becoz private ki accessibility class tk limit hot h,and private and static things compile-time pe bind hote hain 
+ Note:- Binding = method call ko actual method se jodna
+  a. Compile-time binding (Early binding/static binding) → Kaunsa method call hoga, compiler pehle hi decide kar leta hai     
+  b. Runtime binding (Late binding/dynamic binding) → Execution time pe decide hota hai (polymorphism).
+ 
+Final methods   | ❌ Override nahi hote, due to static binding compiler fix kr deta hai,but they can overloaded. 
+
+Constructors    | ❌ Override nahi hote , constructor same class name pe hota hai to ek file me 2 same class nhi ho skte.
+
+Can a overriden function call it's non-overriden function ?
+yes , using super keyword.
+
+Can we change return type while overriding a method in Java?
+Yes, but only sub type(covariant) of parent return type , or child return type should be same.
