@@ -1,0 +1,56 @@
+------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+Nested class :  A nested class is a class that is defined inside another class.
+🔹 Why Nested Classes Are Used?
+    - To group logically related classes
+    - To increase encapsulation
+    - To access private members of outer class
+    - To make code more readable and maintainable
+
+Note:- Outer class static q nhi hoti ?
+- Top-level (outer) class static ho hi nahi sakti because:
+   - static ka matlab hota hai kisi enclosing class se belong karna, Lekin outer class ke paas koi enclosing class hoti hi nahi/Outer class khud kisi class ke andar nahi hoti.
+   - so it can be access access directly if in same package then like this : A a = new A();  or if Different package then like this : packageA.A a = new packageA.A();
+
+Types of Nested Classes in Java :
+1️⃣ Static Nested Class : 
+- Does not need outer class object
+- Static Nested Class can DIRECTLY access only static members of outer class. but creating object of outer class also non-static can be access.
+- is static nested class ke ander sab kuch ho skta hai like,non-static variables , methods , constructors, static methods , variables. similar to any other class.
+- static nested class bnane ka fayda :
+                    - object creation me or outer class static memeber access me,   A.B  obj = new A.B();
+                    - static nested class me only static methods are avialable then object v bnane ki need nhi hai directly can be access like A.B.display();
+- static nested class par saare 4 access modifiers lag sakte hain:  visibility outer + nested dono decide karte hain
+
+2️⃣ Non-Static Nested Class (Inner Class) :
+Types:
+    - Member Inner Class/ regular inner class :- Non-static class jo outer class ke andar hoti hai,aur outer class ke object se tightly bound hoti hai but kisi v function ke body se baher hogi.
+       
+         - inner class se outer class kaise call kr skte ho / data access kr skte ho ? outer-clas-name.this.outerClassMemeber/methodName.
+         - inner classes aaps me v inheritance kr skti hai. 
+         - how to create inner class obje ? OuterClass obj = new OuterClass(); // outer    Outer.Inner inObj = obj.new Inner(); // inner class obj
+
+    - Local Inner Class :- aisi koi v class jo outer class ke ander ho as well as outer class kisi method, constructor ya block ke andar declare hoti hai,
+        - this class can't be static, private, protected..etc not allowed
+        - benifit : Method ke variables access karne ke liye, Agar koi class sirf ek hi method me use honi hai bahar kahin kaam nahi aayegi to usko method ke andar rakhte hain.
+
+    - Anonymous Inner Class : aisi class jiska koi v name nhi ho, ye use me ata hai incomplete method ko implement krne k liye jaise abstract class ke methods, interfaces ke method.
+ way to define :
+        NoNameClass nn = new NoNameClass() {
+            @Override
+            void display() {
+                
+            }
+        };
+        nn.display();
+
+
+------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+Java Generics :
+Syntax=:-  className<T> where T means type
+Use case:- suppose there is a class which has display method which is displaying value as per requirement sometimes, integer type, double or string etc so we use convention T which is replace
+           with actual value at runtime.
+Note:- there is concept of bounded generic class eg - ClassName<T extends CollegeClassName> isme college class name se jo v class extend kr rhi hogi whi accept hoga kewl
+      kuch common convention like :   T -> type ke liye
+                                      E  -> Element
+                                      K  -> key
+                                      V  -> value
