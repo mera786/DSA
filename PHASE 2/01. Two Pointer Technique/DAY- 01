@@ -1,0 +1,35 @@
+What is Two Pointer Technique?
+The two-pointer technique is an algorithmic approach that uses two indices, or pointers, to traverse a data structure like an array, string, or linked list. It is used to solve problems efficiently, 
+often by moving the pointers toward each other or in the same direction.
+Pointer = just an index (like i and j),
+They can move:
+        - from left to right
+        - from right to left
+        - from opposite ends
+        - or move independently
+❓ Why use Two Pointers?
+Because it reduces time complexity from O(n²) (nested loops) → O(n) (single pass).
+🏆 Where is Two Pointer Used?
+(A) Sorting-based Problems : Use two pointers when array is sorted (or can be sorted)
+   problem like,
+           - Find pair with sum = target (Two Sum)
+           - Find triplets (3Sum, 4Sum)
+           - Remove duplicates in sorted array
+           - Binary search–like problems
+(B) Searching from both sides :
+like,
+    - Reverse an array
+    - Palindrome check
+    - Segregating 0s and 1s
+    - Sort colors (0,1,2 – Dutch National Flag)
+(C) Sliding Window (a type of two pointer) :
+like,
+    - Max/Min subarray sum
+    - Longest substring without repeating
+    - Fixed window problems
+    - Variable window problems
+(D) Partitioning or grouping :
+like,
+    - Partition array around pivot (QuickSort)
+    - Move all negatives left and positives right
+    - Move all even numbers left, odd right
