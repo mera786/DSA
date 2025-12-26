@@ -65,8 +65,21 @@ If you modify input,
 → convert it back before finishing
 → still better to avoid.
 
-
 The Big O cheatsheet by Eric is available at https://www.bigocheatsheet.com/.
+
+
+Rules For analyzing time complexity :
+1. Always analyze worst case scinario.
+2. ignore constants eg- O(2n) -> O(n).
+3. drop low order terms eg - O(n^2 + n) -> O(n^2)
+4. in general outer loop * inner loop = total time complexity.
+5. if input is divided, use logs:
+        Divided by 2 -> log base 2 = O(log2n).
+        Divided by 3 -> log base 3 = O(log3n).
+6. function calls : analyze each function's complexity indivisually and include them where they are called.
+7. conditions and branches (if/else) : consider the branch with higher complexity for worst-case.
+8. loops depending on input values(eg- while(i<n) with i*=2)  => usually log based complexity.
+
 
 ⭐ Analysis of time complexity :
 ---------------------------------
