@@ -37,6 +37,12 @@ Your task is to find:
                                   Inme se sabse chhota number kaun sa hai?
                                   → 8
                                   🟩 So, Ceiling = 8
+Input :
+        int [] arr = {2,2,4,4,6,7,11,16};
+        int tar = 5;
+Output:
+floor -> 4
+ceiling -> 6
 
                                                                       
 LeetCode: Q744. Find Smallest Letter Greater Than Target ?
