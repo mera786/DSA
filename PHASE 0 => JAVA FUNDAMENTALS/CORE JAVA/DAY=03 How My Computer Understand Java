@@ -1,0 +1,57 @@
+┌─────────────────────────────────────┐
+│     Source Code (.java File)        │
+└─────────────────────────────────────┘
+                   │
+                   ▼
+┌─────────────────────────────────────┐
+│      Java Compiler (javac)          │
+└─────────────────────────────────────┘
+                   │
+                   ▼
+┌─────────────────────────────────────┐
+│      Bytecode (.class File)         │
+└─────────────────────────────────────┘
+                   │
+                   ▼
+┌─────────────────────────────────────────────────────────────┐
+│                         JVM                                 │
+│                                                             │
+│  ┌─────────────────────────────────────────────────────┐    │
+│  │                  Class Loader                       │    │
+│  └─────────────────────────────────────────────────────┘    │
+│                           │                                 │
+│                           ▼                                 │
+│  ┌─────────────────────────────────────────────────────┐    │
+│  │                Bytecode Verifier                    │    │
+│  └─────────────────────────────────────────────────────┘    │
+│                           │                                 │
+│                           ▼                                 │
+│  ┌─────────────────────────────────────────────────────┐    │
+│  │                  JIT Compiler                       │    │
+│  └─────────────────────────────────────────────────────┘    │
+│                                                             │
+└─────────────────────────────────────────────────────────────┘
+                   │
+                   ▼
+┌─────────────────────────────────────┐
+│   Native Machine / Binary Code      │
+└─────────────────────────────────────┘
+                   │
+                   ▼
+┌─────────────────────────────────────┐
+│        Program Execution            │
+└─────────────────────────────────────┘
+
+Note:- JRE contains the JVM (above JVM Components box) plus standard libraries — JRE provides runtime environment.
+
+
+
+EXPLANATION :
+1. Source Code (.java) → Java programmer code likhta hai.
+2. javac Compiler → .java ko .class (Bytecode) me convert karta hai.
+3. Bytecode (.class) → Platform-independent code.
+4. Class Loader → Bytecode ko JVM me load karta hai.
+5. Bytecode Verifier → Check karta hai code safe aur valid hai ya nahi.
+6. JIT Compiler → Frequently used bytecode ko machine code me convert karta hai.
+7. Native Machine Code → CPU directly execute karta hai.
+8. Program Execution → Output milta hai.
