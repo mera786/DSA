@@ -1,0 +1,348 @@
+BASIC JAVA 8 FEATURES :
+-----------------------
+Q1. What are the main features introduced in Java 8?
+     - Lambda Expressions
+     - Functional Interfaces
+     - Stream API
+     - Optional Class
+     - Default Methods in Interface
+     - Static Methods in Interface
+     - Method References
+     - New Date-Time API (java.time)
+     - Collector API
+     - New Collection Methods (forEach, removeIf, replaceAll, sort) 
+
+
+Lambda expression :
+-------------------
+Q1. What is a lambda expression?
+A lambda expression is a concise way to represent a function (implement a method of a functional interface). It reduces boilerplate code.
+Example: (int a, int b) -> a + b
+
+Q2. What is the syntax of a lambda expression?
+(parameters) -> expression or (parameters) -> { statements; }
+
+Q3. Can we overload a lambda expression?
+ No. Lambda has no name; overloading applies to methods.
+
+Q4. how lambda expression and functional interface related ?
+A lambda expression provides the implementation of a functional interface. and Functional interface variable stores a reference to that implementation.
+
+
+FUNCTIONAL INTERFACES :
+-----------------------
+Q1. What is a functional interface?
+An interface with exactly one abstract method. Can have default or static methods.
+
+Q2. What are the built-in Java 8 functional interfaces?
+    - Predicate<T> → returns boolean                              boolean test(T t); 
+    - Function<T,R> → maps T to R                                 R apply(T t);
+    - Consumer<T> → accepts input, no return                      void accept(T t);
+    - Supplier<T> → returns value                                 T get();
+    - BiFunction<T,U,R> → two inputs, one output
+
+Q3. Can functional interface have multiple default methods?
+Yes, only one abstract method is allowed.
+
+Q4. What is @FunctionalInterface annotation?
+Compiler-enforced single abstract method. Optional but recommended.
+
+Q5. Can you create your own functional interface?
+Yes, you can create your own functional interface using the @FunctionalInterface annotation. It must have exactly one abstract method.
+
+Q6. What is the difference between Interface and Functional Interface?
+    Interface:   Can have multiple abstract methods (along with default & static methods in Java 8).
+    Functional Interface:   Can have only one abstract method (but may include multiple default & static methods).
+
+Q7. What is Predicate in Java 8?
+It’s a functional interface in java.util.function with one abstract method:    boolean test(T t); evaluates a condition and returns true/false.
+
+Q8. Can you create your own Predicate?
+Yes, either by implementing the interface or using a lambda. eg- Predicate<Integer> isEven = n -> n % 2 == 0;
+
+Q9. Can you combine multiple Predicates?
+Yes, using default predicates methods: and(), or(), negate().
+Example:
+Predicate<Integer> gt10 = n -> n > 10;
+Predicate<Integer> even = n -> n % 2 == 0;
+nums.stream().filter(gt10.and(even)).forEach(System.out::println);
+
+Q10. What is the difference between Predicate<T> and Function<T, R>?
+    Predicate<T> → takes input T, returns boolean.
+    Function<T, R> → takes input T, returns any type R.
+
+Q11. Can Predicate be used outside Streams?
+Yes, anywhere conditional logic is required.
+Example: Passing predicates into methods for validation.
+
+Q12. Difference between Predicate and BiPredicate?
+Predicate<T> → takes one argument.
+BiPredicate<T, U> → takes two arguments.
+
+Q13. What is Function in Java 8?
+A functional interface in java.util.function. it Has one abstract method: R apply(T t); which Takes an input of type T, returns a result of type R.
+
+Q14. What are the Difference between andThen() and compose() in Function?
+Both used for Function Chaining :
+     andThen() → executes current function first, then the given function.    andThen() → this → next
+     compose() → executes given function first, then the current function.    compose() → next → this
+
+Q15. What is Function.identity()?
+A static method returning a function that always returns its input.
+Example:
+Function<String, String> identityFunc = Function.identity();
+System.out.println(identityFunc.apply("Hello")); // Hello
+
+Q16. What is the difference between Function<T,R> and Consumer<T>?
+Function<T,R> → takes input, returns output.
+Consumer<T> → takes input, returns nothing (void accept(T t)).
+
+Q17. What is Consumer in Java 8?
+A functional interface in java.util.function. Has one abstract method: void accept(T t);  Takes an input and performs an action, but does not return anything.
+
+Q18. What is andThen() in Consumer?
+Used to chain multiple Consumers.
+Example:
+Consumer<String> c1 = str -> System.out.print(str + " ");
+Consumer<String> c2 = str -> System.out.println(str.length());
+c1.andThen(c2).accept("Hello"); // Hello 5
+
+Q19. Can Consumers be combined like Functions?
+Yes, but only with andThen() (no compose() in Consumer).
+
+Q20. Can Consumer be used outside Streams?
+Yes, e.g., for logging, validation, or applying actions in business logic.
+Example: Consumer<Employee> saveEmployee = emp -> repository.save(emp);
+
+Q21. What is Supplier in Java 8?
+A functional interface in java.util.function. Has one abstract method:   T get();   It takes no input and returns a result of type T.
+
+Q22. Where do we use Supplier in real projects?
+ - Lazy initialization (provide values when needed).
+ - Supplying defaults when optional values are missing.
+ - Generating objects (e.g., UUIDs, tokens).
+
+Q23. How do you use Supplier with Optional?
+With orElseGet() :
+Optional<String> name = Optional.ofNullable(null);
+String result = name.orElseGet(() -> "DefaultName"); // Supplier provides fallback
+System.out.println(result); // DefaultName
+
+
+Stream API:
+------------
+
+Q1. What is a Stream?
+A sequence of elements supporting aggregate operations (map, filter, reduce) without storing data. it is used to perform bulk of operation on collection objects.
+
+Q2. Difference Between Collection and Stream in Java 8 ?
+| Aspect                  | **Collection**                                                             | **Stream**                                                                           |
+| ----------------------- | -------------------------------------------------------------------------- | ------------------------------------------------------------------------------------ |
+| **Definition**          | In-memory data structure that stores elements (like `List`, `Set`, `Map`). | Sequence of elements supporting aggregate (functional-style) operations.             |
+| **Storage**             | Stores data.                                                               | Does not store data; just conveys data from a source.                                |
+| **Computation Style**   | External Iteration (you control iteration using loops/iterators).          | Internal Iteration (Stream API handles iteration).                                   |
+| **Modification**        | Supports add/remove/modify elements.                                       | Cannot modify elements directly (only transform/mapped output).                      |
+| **Reuse**               | Can be reused multiple times.                                              | Streams are consumable **once**; need a new stream for reuse.                        |
+| **Execution**           | Eager evaluation (operations happen immediately).                          | Lazy evaluation (operations are executed only when a terminal operation is invoked). |
+| **Traversing**          | Can traverse elements multiple times.                                      | Can traverse elements only once.                                                     |
+| **Parallel Processing** | Needs manual coding with threads.                                          | Built-in support via `parallelStream()`.                                             |
+| **Introduced In**       | Available since Java 1.2 (Collections Framework).                          | Introduced in Java 8.                                                                |
+
+Q3. Explain Stream operations?
+Intermediate: filter(), map(), distinct(), sorted()
+Terminal: collect(), forEach(), reduce(), count()
+
+Q4. What is lazy evaluation in stream ? like this ?
+lazy evalution means in stream, Intermediate operations are not executed until a terminal operation is called.
+
+
+Q5. Parallel vs sequential streams?
+Both are types of streams where :
+  - stream() → sequential execution, single-threaded
+  - parallelStream() → uses multiple cores, parallel execution
+
+Q6. Tell Stream short-circuit operations?
+findFirst(), anyMatch(), allMatch(), limit() → terminate early if condition met.
+
+Q7. What is the difference between map() and flatMap()?
+- map() → transforms each element into one element (1:1 mapping).
+- flatMap() → transforms each element into multiple elements (1:Many), then flattens them into a single stream.
+
+Q8. What is the difference between Collection API and Stream API iteration?
+| Aspect                            | Collection API                            | Stream API                                              |
+| --------------------------------- | ----------------------------------------- | ------------------------------------------------------- |
+| **Iteration Type**                | External iteration                        | Internal iteration                                      |
+| **Who Controls Iteration**        | Programmer controls using loops/iterators | Stream handles iteration internally                     |
+| **Syntax Example**                | `for`, `for-each`, `Iterator`             | `stream().forEach()`                                    |
+| **Parallelism**                   | Manual (`for` loop with threads)          | Easy parallelism using `parallelStream()`               |
+| **Lazy Evaluation**               | No — elements processed immediately       | Yes — intermediate operations are lazy                  |
+| **Modification During Iteration** | Can modify elements carefully             | Should not modify underlying collection while streaming |
+
+Q9. Can a stream be reused?
+No, streams are consumed once. Trying to use again → IllegalStateException.
+
+Q10. What happens if we call only intermediate operations without terminal operation?
+Nothing happens (lazy evaluation).
+
+Q11. How do you remove duplicates using streams?
+
+Q12: How to sort objects using streams?
+
+Q13. How do you convert a list to a map using streams?
+Map<Integer, String> map = employees.stream()
+   .collect(Collectors.toMap(Employee::getId, Employee::getName));
+
+Q14. How do you group data using streams?
+Map<String, List<Employee>> groupByDept = employees.stream()
+   .collect(Collectors.groupingBy(Employee::getDepartment));
+
+Q15. Difference between forEach() and forEachOrdered()?
+  - forEach() → unordered in parallel streams.
+  - forEachOrdered() → maintains encounter order even in parallel.
+
+Q16. What is the difference between reduce() and collect()?
+ - reduce() → reduces elements to a single result (sum, product).
+ - collect() → mutable reduction, used to accumulate results into collections (List, Set, Map).
+
+Q17. Can we use stream on infinite data?
+Yes, using Stream.generate() or Stream.iterate(). Must combine with short-circuiting (limit()).
+eg -
+Stream.iterate(1, n -> n + 1).limit(5).forEach(System.out::println);
+
+Q18. What is the difference between findFirst() and findAny()?
+findFirst() → always returns the first element (deterministic).
+findAny() → may return any element (better for parallel streams).
+
+Q19. How can you create a Stream from different types of collections in Java 8?
+| Source                      | How to create Stream                         |
+| --------------------------- | -------------------------------------------- |
+| Collection (List/Set)       | `collection.stream()`                        |
+| Array                       | `Arrays.stream(array)` or `Stream.of(array)` |
+| Individual elements         | `Stream.of(e1, e2, e3)`                      |
+| Infinite stream (Supplier)  | `Stream.generate(supplier)`                  |
+| Infinite stream (Iterative) | `Stream.iterate(seed, func)`                 |
+| File lines                  | `Files.lines(path)`                          |
+
+Q20. What is the difference between java.util.stream.Stream (Java 8) and java.io.Stream?
+| Aspect     | `java.util.stream.Stream` (Java 8)                                                 | `java.io.Stream` (Java IO)                                               |
+| ---------- | ---------------------------------------------------------------------------------- | ------------------------------------------------------------------------ |
+| Package    | `java.util.stream`                                                                 | `java.io`                                                                |
+| Purpose    | For **processing collections of data** in a functional style (map, filter, reduce) | For **reading/writing bytes or characters** to/from files, network, etc. |
+| Type       | Sequence of objects (generic)                                                      | Sequence of bytes (`InputStream`) or characters (`Reader/Writer`)        |
+| Operations | Supports **intermediate & terminal operations** (lazy evaluation)                  | Supports **I/O operations** (read/write, blocking)                       |
+| Example    | `list.stream().filter(x -> x>0).collect(Collectors.toList())`                      | `FileInputStream fis = new FileInputStream("file.txt")`                  |
+
+
+Optional Class:
+---------------
+
+Q1. What is Optional/ Optional class?
+Container object that may or may not contain a non-null value. Avoids NullPointerException.
+
+Q2. What are the Methods of Optional?
+     - isPresent() → returns true if value is present.
+     - ifPresent(Consumer) → executes a block if value is present.
+     - orElse(T other) → returns value if present, else returns other.
+     - orElseGet(Supplier) → lazily computes default value if empty.
+     - orElseThrow() → throws exception if value not present.
+     - map(Function) → transforms value if present.
+     - flatMap(Function) → transforms and flattens nested Optional.
+     - filter(Predicate) → returns Optional if predicate matches.
+eg -
+Optional<String> name = Optional.ofNullable(getName());
+name.ifPresent(System.out::println);
+
+Q3. Difference between orElse and orElseGet?
+orElse : evaluates default value always
+orElseGet:  evaluates lazily only if empty
+
+Q4. Difference between Optional.of() and Optional.ofNullable()?
+| Feature           | `Optional.of()`                                                                                                       | `Optional.ofNullable()`                                                                                                                     |
+| ----------------- | --------------------------------------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------------------------------------------------------- |
+| **Purpose**       | Creates an `Optional` with a **non-null value**.                                                                      | Creates an `Optional` that **may contain a null**.                                                                                          |
+| **Null Allowed?** | **No**. Passing `null` will throw `NullPointerException`.                                                             | **Yes**. If value is `null`, it returns `Optional.empty()`.                                                                                 |
+| **Use Case**      | When you are **sure the value is not null**.                                                                          | When the value **might be null**, to avoid NPE.                                                                                             |
+| **Example**       | `java Optional<String> name = Optional.of("Meraz"); // OK Optional<String> name2 = Optional.of(null); // Throws NPE ` | `java Optional<String> name = Optional.ofNullable("Meraz"); // OK Optional<String> name2 = Optional.ofNullable(null); // Optional.empty() ` |
+
+Q5. Difference between get() and orElseThrow() ?
+| Feature                 | `get()`                                                               | `orElseThrow()`                                                          |
+| ----------------------- | --------------------------------------------------------------------- | ------------------------------------------------------------------------ |
+| **Purpose**             | Retrieves the value inside the Optional if present.                   | Retrieves the value if present, otherwise throws a **custom exception**. |
+| **Null/Empty Handling** | Throws `NoSuchElementException` if Optional is empty.                 | Throws the exception provided by a `Supplier` if Optional is empty.      |
+| **Syntax**              | `optional.get()`                                                      | `optional.orElseThrow(() -> new RuntimeException("Value missing"))`      |
+| **Use Case**            | Rarely recommended; can cause NPE-like behavior if Optional is empty. | Preferred in modern code; allows **custom exception handling**.          |
+
+
+
+Default & Static Methods in Interface:
+---------------------------------------
+
+Q1. What is a default method?
+A method with implementation in an interface. Allows interface evolution without breaking code.
+
+Q2. What is a static method in interface?
+A method able to call using interface name, cannot be overridden.
+
+Q3. Can default methods override Object class methods?
+Yes, but class method always takes precedence. so there is no use that's why  Default methods cannot override methods that come from Object.
+
+Q4. Is it necessary to always override default method ?
+No, it is not necessary to override a default method, the main purpose of default methods in Java 8 — to provide a default implementation
+so that implementing classes don’t have to implement it unless they want to.
+
+Q5. How can a default method in an interface cause an ambiguity problem in Java 8? How do you resolve it?
+ - If a class implements multiple interfaces and these interfaces have default methods with the same signature, the compiler cannot decide which method to inherit.
+ - This is called the diamond problem or default method conflict.
+ - How to Resolve: The implementing class must override the default method and explicitly specify which interface’s method to call if needed.
+   eg - Choosing one interface’s default method using InterfaceName.super.methodName()
+
+Q6. Why do we need static methods in an interface in Java 8?
+- Static methods allow us to define utility/helper methods inside an interface.
+- They belong to the interface, not to any instance of a class that implements it.
+
+Q7. Are static methods in interfaces available to implementing classes by default?
+ - Static methods in an interface belong to the interface itself, not to any implementing class.
+ - They cannot be inherited by the class that implements the interface.
+ - Implementing classes cannot call the static method directly using this or the class name — you must use the interface name.
+
+Q8. Is default keyword an access modifier in Java 8?
+ - In Java 8, the default keyword in interfaces is not an access modifier.
+ - It is used to provide a default implementation of a method in an interface.
+
+Q9. What is a method reference in Java 8?
+   - Method Reference is a shortcut or shorthand notation of a lambda expression that refers to an existing method by name.
+   - Instead of writing the full lambda body, you can just refer to a method that already exists.
+   - It makes code cleaner and more readable.
+   - Syntax Types:
+          a. Reference to a static method :>    ClassName::staticMethodName
+          b. Reference to an instance method of a particular object:>    object::instanceMethodName
+          c. Reference to a constructor:>  ClassName::new
+         
+
+
+New Date-Time API (java.time) :
+-------------------------------
+
+Q1. Why new Date/Time API?
+Old Date & Calendar are mutable, not thread-safe. New API is immutable and thread-safe.
+
+Q2. What are the Key classes for Date & Time API ?
+  - LocalDate, 
+  - LocalTime, 
+  - LocalDateTime,
+  - ZonedDateTime,
+  - Duration, 
+  - Period,
+  - DateTimeFormatter
+  - Instant
+
+Q3. Example for LocalDate ?
+LocalDate today = LocalDate.now();
+LocalDate nextWeek = today.plusWeeks(1);
+
+Q4. Way for Formatting ?
+DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd-MM-yyyy");
+String formatted = today.format(formatter);
+
+Q5. Parsing from string ?
+LocalDate date = LocalDate.parse("27-09-2025", formatter);

@@ -1,0 +1,226 @@
+
+                                                          FLATMAP
+_____________________________________________________________________________________________________________________________________________
+
+                                                          EASY (1-10)
+                                                         --------------
+
+(1) Extracting Hashtags from Tweets? 
+Input:  
+List<String> tweets = Arrays.asList( 
+"I love #Java", 
+"Programming in #Python is great" 
+); 
+Output: [#Java, #Python] 
+ 
+
+(2) Flattening Nested Lists of Integers?
+Input: 
+ List<List<Integer>> data = Arrays.asList(
+                Arrays.asList(1, 2),
+                Arrays.asList(3, 4),
+                Arrays.asList(5)
+        ); 
+Output: [1, 2, 3, 4, 5]
+
+
+(3) Flattening Nested Lists of Strings? 
+Input: 
+        List<List<String>> data = Arrays.asList(
+                Arrays.asList("apple", "banana"),
+                Arrays.asList("cherry"),
+                Arrays.asList("date")
+        );
+Output: [apple, banana, cherry, date] 
+
+(4) Mapping and Flattening to Integer Lists? 
+Input: 
+        List<List<String>> data = Arrays.asList(
+                Arrays.asList("1", "2"),
+                Arrays.asList("3"),
+                Arrays.asList("4")
+        );
+Output: [1, 2, 3, 4] 
+
+
+(5) Flattening a List of Optional Values? 
+Input: 
+        List<List<Optional<String>>> data = Arrays.asList(
+                Arrays.asList(Optional.of("a")),
+                Arrays.asList(Optional.empty()),
+                Arrays.asList(Optional.of("b"))
+        );
+Output: [a, b] 
+
+(6) Flattening a List of Lists with Different Sizes? 
+Input: 
+    List<List<Integer>> list = Arrays.asList(
+            Arrays.asList(1), 
+            Arrays.asList(2, 3, 4), 
+            Arrays.asList(5, 6));
+Output: [1, 2, 3, 4, 5, 6]
+
+
+(7) Flattening a List of Characters? 
+Input:
+    List<List<Character>> list = Arrays.asList(
+            Arrays.asList('a', 'b'),
+            Arrays.asList('c', 'd')
+    );
+Output: [a, b, c, d] 
+
+(8) Flattening and Removing Duplicates?
+Input: 
+    List<List<Integer>> list = Arrays.asList(
+            Arrays.asList(1, 2),
+            Arrays.asList(2, 3),
+            Arrays.asList(3, 4)
+    );
+Output: [1, 2, 3, 4] 
+
+
+(9) Flattening Nested Maps? 
+Input: 
+List<Map<String, List<Integer>>> data = Arrays.asList(
+        new HashMap<String, List<Integer>>() {{
+            put("a", Arrays.asList(1, 2));
+        }},
+        new HashMap<String, List<Integer>>() {{
+            put("b", Arrays.asList(3, 4));
+        }}
+);
+Output: [1, 2, 3, 4] 
+
+
+(10)   Flattening a List of Lists of Booleans? 
+Input: 
+List<List<Boolean>> data = Arrays.asList(
+        Arrays.asList(true, false),
+        Arrays.asList(false, true)
+);
+Output: [true, false, false, true] 
+
+
+                                                                MEDIUM (1-10)
+                                                             -----------------------
+
+(1) Flattening a List of Lists and Converting to Strings? 
+Input: 
+    List<List<Integer>> list = Arrays.asList(
+            Arrays.asList(1, 2),
+            Arrays.asList(3, 4)
+    );
+Output: [1, 2, 3, 4] 
+
+(2) Flattening and Summing Nested Lists of Integers? 
+Input: 
+    List<List<Integer>> list = Arrays.asList(
+            Arrays.asList(1, 2),
+            Arrays.asList(3, 4)
+    );
+Output: 10 
+
+(3) Flattening a List of Student's Subjects? 
+Input:
+    List<List<Student>> list = Arrays.asList(
+            Arrays.asList(new Student("John",Arrays.asList("Math", "Science"))),
+            Arrays.asList(new Student("Jane",Arrays.asList("English")))
+    );
+Output: [Math, Science, English] 
+ 
+
+(4) Flattening a List of JSON Objects's tags having id and tags? 
+Input: 
+    List<List<Student>> list = Arrays.asList(
+            Arrays.asList(new Student(1, Arrays.asList("java", "spring"))),
+            Arrays.asList(new Student(2, Arrays.asList("python", "django")))
+    );
+Output: ["java", "spring", "python", "django"]
+
+(5) Flattening a List of Mixed Data Types? 
+Input: 
+    List<List<Object>> list = Arrays.asList(
+            Arrays.asList(1, "a"),
+            Arrays.asList(2, "b"),
+            Arrays.asList(3, "c")
+    );
+Output: [1, a, 2, b, 3, c] 
+
+(6) Flattening a List of Paths? 
+Input:
+    List<List<String>> list = Arrays.asList(
+            Arrays.asList("/home/user"),
+            Arrays.asList("/etc"),
+            Arrays.asList("/var/log")
+    );
+Output: [/home/user, /etc, /var/log] 
+
+
+(7) Flattening a List of Recipes with Ingredients? 
+Input:  
+List<Recipe> recipes = Arrays.asList(
+        new Recipe("Cake", Arrays.asList("flour", "sugar")),
+        new Recipe("Pasta", Arrays.asList("noodles", "sauce"))
+);
+Output: [flour, sugar, noodles, sauce] 
+
+
+
+                                                                HARD (1-10)
+                                                              -----------------
+
+(1) Flattening Nested Optional Values? 
+Input: 
+    List<Optional<List<Integer>>> list = Arrays.asList(
+            Optional.of(Arrays.asList(1, 2)),
+            Optional.empty(),
+            Optional.of(Arrays.asList(3, 4))
+    );
+Output: [1, 2, 3, 4] 
+
+
+(2) Flattening a List of Maps with Multiple Entries? 
+Input:
+    List<Map<String, List<String>>> list = Arrays.asList(
+
+            new HashMap<String, List<String>>() {{
+                put("key1", Arrays.asList("val1", "val2"));
+            }},
+
+            new HashMap<String, List<String>>() {{
+                put("key2", Arrays.asList("val3"));
+            }}
+    );
+Output: [val1, val2, val3] 
+
+
+
+(3) Flattening a List of Product Attributes? 
+Input: 
+    List<Product> products = Arrays.asList(
+
+            new Product(
+                    "Laptop",
+                    Arrays.asList("16GB RAM", "512GB SSD")
+            ),
+
+            new Product(
+                    "Phone",
+                    Arrays.asList("128GB", "5G")
+            )
+    );
+Output: ["16GB RAM", "512GB SSD", "128GB", "5G"] 
+
+
+(4) Flattening Nested Hierarchical Data? 
+Input: 
+    List<List<Item>> data = Arrays.asList(
+            Arrays.asList(
+                    new Item(1, "A"),
+                    new Item(2, "B")
+            ),
+            Arrays.asList(
+                    new Item(3, "C")
+            ));
+Output: [A{id=1, name='A'}, A{id=2, name='B'}, A{id=3, name='C'}] 
+ 
