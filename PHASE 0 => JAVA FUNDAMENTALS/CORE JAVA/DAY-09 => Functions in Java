@@ -1,0 +1,71 @@
+1. What are Methods in Java ?
+  a. Method in Java or Java Method is a block of code that perform some specific task and it may or may not return the result to the caller.
+  b. Method in java should be part of some class.
+Method syntax:
+<access_modifier> <return_type> <method_name>(list_of_parameters)
+{
+    //function body 
+}
+  c. Main advantage is "Code Reusability".
+
+
+2. What are the types of methods in Java?
+Java methods are mainly classified into two types:
+  - Predefined Method: 
+     a. Predefined methods are the method that is already defined in the Java class libraries is known as predefined methods. 
+        It is also known as the standard library method or built-in method. We can directly use these methods just by calling them in the program at any point. 
+ - User-defined Method:
+    a. The method written by the user or programmer is known as a user-defined method. These methods are modified according to the requirement.
+
+
+3. What is Method Signature in Java?
+    a. It consists of the method name and a parameter list (number of parameters, type of the parameters, and order of the parameters).
+       Example - calculate(int a, int b)
+    b. While defining a method, remember that the method name must be a verb and start with a lowercase letter.
+    c. If the method name has more than two words, the first name must be a verb followed by an adjective or noun.
+    d. In the multi-word method name, the first letter of each word must be in uppercase except the first word. For example, findSum, computeMax, setX and getX.
+
+
+4. What is Method Overloading in Java ?
+    a. When there are two or more than two methods in a class that have the same name but different parameters, it is known as method overloading.
+       Java allows a function to have the same name if it can distinguish them by their number and type of arguments.
+
+
+
+5. Is Java Pass by Value or Pass by Reference? Explain with Example ?
+💡 Shortcut to Remember
+                      Java = “Pass by value of the reference” (means reference ka copy jaata hai, reference khud nahi).
+
+class A {
+    int val;
+}
+
+void modify(A obj) {
+    obj.val = 100;
+}
+
+public static void main(String[] args) {
+    A a = new A();
+    a.val = 50;
+    modify(a);
+    System.out.println(a.val);
+}
+
+Output: 100
+
+🧩 Explanation:
+              - Yahan bhi pass by value hi hua, par value ka matlab hai object reference ka copy.
+              - Method me obj aur a dono same object ko point karte hain.
+              - Isliye object ke andar ka data change ho gaya.
+👉 Par agar method ke andar hum reference ko reassign kar dein, to original par effect nahi hoga:
+
+void modify(A obj) {
+    obj = new A(); // new object
+    obj.val = 200;
+}
+
+A a = new A();
+a.val = 50;
+modify(a);
+System.out.println(a.val);
+ Output : 50
