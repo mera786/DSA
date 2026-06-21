@@ -1,0 +1,560 @@
+                                                                                          🟢 EASY (20)
+
+
+Q1. string me digits find karo ?
+Input:
+String str = "abc123xyz";
+Output: 123
+
+
+Q2. lowercase letters match karo ?
+Input: 
+String str = "AbCde";
+Output: b, d, e
+
+
+Q3. uppercase letters match karo ?
+Input: 
+String str = "AbCde";
+Output: A, C
+
+
+Q4. alphanumeric characters match karo ?
+Input: 
+String str = "abc@123#";
+Output: abc123
+
+
+Q5. whitespace find karo ?
+Input: 
+String str = "hello world";
+Output: " "
+
+
+Q6. non-digit characters ?
+Input: 
+String str = "abc123";
+Output: abc
+
+
+Q7. sirf word characters match karo ?
+Input: 
+String str = "a@b#c1";
+Output: a, b, c, 1
+
+
+Q8. dot character literal match karo ?
+Input: 
+String str = "file.txt";
+Output: .
+
+
+Q9. string me numbers extract karo ?
+Input: 
+String str = "10 apples 20 mangoes";
+Output: 10, 20
+
+
+Q10. ek ya zyada 'a' match karo ?
+Input: 
+String str = "aaab";
+Output: aaa
+
+
+Q11. zero ya more 'a' ?
+Input: 
+String str = "b";
+Output: ""
+
+
+Q12. exactly 3 digits ?
+Input: 
+String str = "1234";
+Output: 123
+
+
+Q13. words extract karo ?
+Input: 
+String str = "hello123 world";
+Output: hello, world
+
+
+Q14. non-word characters ?
+Input: 
+String str = "abc@#";
+Output: @, #
+
+
+Q15. tab ya space identify karo ?
+Input: 
+String str = "a b";
+Output: " "
+
+
+Q16. special characters match karo ?
+Input: 
+String str = "a@b#c";
+Output: @, #
+
+
+Q17. start me digit match karo ?
+Input: 
+String str = "1abc";
+Output: 1
+
+
+Q18. end me digit match karo ?
+Input: 
+String str= "abc1";
+Output: 1
+
+
+Q19. any character match karo ?
+Input: "abc"
+Output: a, b, c
+
+
+Q20. string me vowels match karo ?
+Input: 
+String str = "hello";
+Output: e, o
+
+
+                                                                                          🟡 MEDIUM (20)
+
+
+
+Q1. valid email extract karo ?
+Input: 
+String str = "test@gmail.com invalid@";
+Output: test@gmail.com
+
+
+Q2. 10 digit mobile number ?
+Input: 
+String str = "9876543210 12345";
+Output: 9876543210
+
+
+Q3. words starting with capital ?
+Input: 
+String str = "Hello world Java";
+Output: Hello, Java
+
+
+Q4. words ending with digit ?
+Input: 
+String str = "abc1 xyz2 test";
+Output: abc1, xyz2
+
+
+Q5. sirf alphabets wale words ?
+Input: 
+String str = "abc123 xyz";
+Output: xyz
+
+
+Q6. 2 se 4 digits match karo ?
+Input: 
+String str = "1 12 123 1234 12345";
+Output: 12, 123, 1234
+
+
+Q7. repeated characters (aa, bb) ?
+Input: 
+String str = "aabbcc";
+Output: aa, bb, cc
+
+
+Q8. underscore wale words ?
+Input: 
+String str = "abc_def xyz";
+Output: abc_def
+
+
+Q9. string start with digit ?
+Input: "1abc abc1"
+Output: 1abc
+
+
+Q10. string end with digit ?
+Input: 
+String str = "abc1 test";
+Output: abc1
+
+
+Q11. words length >=3 ?
+Input: 
+String str = "a ab abc abcd";
+Output: abc, abcd
+
+
+Q12. vowels continuous match ?
+Input: 
+String str = "cooperation";
+Output: oo, e, a, io
+
+
+Q13. special chars sequence ?
+Input: 
+String str = "abc@@@###";
+Output: @@@###
+
+
+Q14. numbers between spaces ?
+Input: 
+String str = "a 123 b 456 c";
+Output: 123, 456
+
+
+Q15. word + digit combo ?
+Input: 
+String str = "test1 test12 test";
+Output: test1, test12
+
+
+Q16. optional 'u' in color ?
+Input: 
+String str = "color colour";
+Output: color, colour
+
+
+Q17. hyphen separated words ?
+Input: 
+String str = "cat-dog bird";
+Output: cat-dog
+
+
+Q18. extract domain name ?
+Input: 
+String str = "test@gmail.com";
+Output: gmail
+
+
+Q19. words without digits ?
+Input: 
+String str = "abc123 xyz";
+Output: xyz
+
+
+Q20. only numbers string ?
+Input: 
+String str = "12345 abc";
+Output: 12345
+
+                                                                                          🔴 HARD (20)
+
+Q1
+
+Q: strong password (upper, lower, digit, special)
+Input: "Pass@123 weakpass"
+Output: Pass@123
+
+Q2
+
+Q: valid IPv4 address
+Input: "192.168.1.1 999.999.999.999"
+Output: 192.168.1.1
+
+Q3
+
+Q: extract URLs
+Input: "https://google.com test"
+Output: https://google.com
+
+Q4
+
+Q: valid date dd/mm/yyyy
+Input: "12/05/2024 99/99/9999"
+Output: 12/05/2024
+
+Q5
+
+Q: repeated word detect karo
+Input: "hello hello world"
+Output: hello
+
+Q6
+
+Q: palindrome words
+Input: "madam level test"
+Output: madam, level
+
+Q7
+
+Q: nested brackets
+Input: "((abc)) (test)"
+Output: ((abc)), (test)
+
+Q8
+
+Q: currency values
+Input: "₹100 $200 €300"
+Output: ₹100, $200, €300
+
+Q9
+
+Q: trim leading/trailing spaces
+Input: " hello "
+Output: hello
+
+Q10
+
+Q: duplicate characters
+Input: "aabbcc"
+Output: aa, bb, cc
+
+Q11
+
+Q: words with same start/end
+Input: "aba xyz aa"
+Output: aba, aa
+
+Q12
+
+Q: continuous repeating pattern
+Input: "ababab xyz"
+Output: ababab
+
+Q13
+
+Q: email validation strict
+Input: "test@gmail.com test@@gmail.com"
+Output: test@gmail.com
+
+Q14
+
+Q: extract hashtags
+Input: "#java #regex test"
+Output: #java, #regex
+
+Q15
+
+Q: extract mentions
+Input: "@user1 hello @user2"
+Output: @user1, @user2
+
+Q16
+
+Q: numeric range (100–999)
+Input: "50 150 999 1000"
+Output: 150, 999
+
+Q17
+
+Q: hex color codes
+Input: "#FFF #123ABC #GGG"
+Output: #FFF, #123ABC
+
+Q18
+
+Q: remove HTML tags
+Input: "<h1>Hello</h1>"
+Output: Hello
+
+Q19
+
+Q: repeated digits
+Input: "111 222 123"
+Output: 111, 222
+
+Q20
+
+Q: complex validation (letters+digits+special, min 8)
+Input: "Abc@1234 short1"
+Output: Abc@1234
+
+
+                                                                            🔥 TOP 25 JAVA + REGEX INTERVIEW QUESTIONS
+🟢 1. Email Validation
+
+❓ Validate email string
+Input: "test@gmail.com, invalid@"
+Output: test@gmail.com
+
+🟢 2. Mobile Number Validation (India)
+
+❓ 10 digit number starting 6–9
+Input: "9876543210 1234567890"
+Output: 9876543210
+
+🟢 3. Find All Numbers
+
+❓ Extract all numbers
+Input: "abc123xyz45"
+Output: 123, 45
+
+🟢 4. Word Boundary Problem
+
+❓ Match only cat not scatter
+Input: "cat scatter cat"
+Output: cat, cat
+
+🟢 5. Password Validation
+
+❓ strong password
+Input: "Pass@123 weak"
+Output: Pass@123
+
+
+🟢 6. Remove Extra Spaces
+
+❓ multiple spaces ko single me convert karo
+Input: "hello world"
+Output: "hello world"
+
+🟡 7. find() vs matches()
+
+❓ Difference batao example ke sath
+
+⚠️ Trap:
+
+log dono ko same samajhte hain
+
+🧠 Expected:
+
+matches() → full string
+find() → partial search
+
+
+🟡 8. Extract Domain
+
+❓ "test@gmail.com" → domain nikalo
+Output: gmail
+
+🟡 9. URL Extraction
+
+❓ extract URLs
+Input: "visit https://google.com"
+Output: https://google.com
+
+🟡 10. Date Validation
+
+❓ dd/mm/yyyy
+Input: "12/05/2024 99/99/9999"
+Output: 12/05/2024
+
+🟡 11. Duplicate Words
+
+❓ find duplicate word
+Input: "hello hello world"
+Output: hello
+
+🟡 12. Case Insensitive Match
+
+❓ "Cat cat CAT"
+Output: 3 matches
+
+⚠️ Trap:
+
+flags use nahi karte
+
+
+🟡 13. Extract Hashtags
+
+❓
+Input: "#java #regex test"
+Output: #java, #regex
+
+
+🟡 14. Extract Mentions
+
+❓
+Input: "@user1 hi @user2"
+Output: @user1, @user2
+
+
+🟡 15. Alphanumeric Validation
+
+❓ only letters + digits
+Input: "abc123 @test"
+Output: abc123
+
+
+🔴 16. Greedy vs Lazy
+
+❓
+Input: "<h1>hello</h1>"
+Output: hello
+
+⚠️ Trap:
+
+greedy .* pura le leta hai
+
+🧠 Expected:
+
+lazy .*?
+
+
+🔴 17. Nested Pattern
+
+❓ "((test))" match karo
+
+⚠️ Trap:
+
+regex nested handling limited hota hai
+
+
+🔴 18. Repeating Pattern
+
+❓ "ababab"
+Output: match
+
+⚠️ Trap:
+
+(ab)+ concept
+
+
+🔴 19. Replace Digits with
+
+❓ "abc123"
+Output: "abc###"
+
+
+🔴 20. Extract Only Valid IP
+
+❓
+Input: "192.168.1.1 999.999.999.999"
+Output: 192.168.1.1
+
+⚠️ Trap:
+
+0–255 range check
+
+
+🔴 21. Hex Color Code
+
+❓
+Input: "#FFF #123ABC #GGG"
+Output: #FFF, #123ABC
+
+
+🔴 22. Log Parsing
+
+❓
+Input: "ERROR 2024-01-01 failed"
+Output: ERROR
+
+⚠️ Trap:
+
+pattern extraction
+
+
+🔴 23. Trim String
+
+❓ " hello "
+Output: hello
+
+
+🔴 24. Word Length Filter
+
+❓ length >= 4
+Input: "a ab abc abcd"
+Output: abcd
+
+
+🔴 25. Complex Validation
+
+❓ min 8 char + mix
+Input: "Abc@1234 short"
+Output: Abc@1234
