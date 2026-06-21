@@ -1,0 +1,158 @@
+
+📌 What is Regular Expression?
+Regex ek pattern (format) hota hai jo strings ko match karne ke liye use hota hai
+Use cases:
+      🔍 Search (text find karna)
+      ✏️ Edit / replace
+      📊 Data validation (email, mobile, etc.)
+
+
+📌 Key Points
+- Regex ka apna special syntax hota hai (Java se alag)
+- Complexity simple se complex tak ho sakti hai
+
+
+📌 Java Regex Package: java.util.regex
+    - Is package me 3 main classes hoti hain:
+                           1️⃣ Pattern Class :  Defines a pattern (to be used in a search)
+                                      - Regex ka compiled version hota hai
+                                      - Direct object create nahi kar sakte
+                                      - Use: Pattern p = Pattern.compile("regex");
+
+🔷 Pattern Flags Table :
+👉 Flag Pattern class ke constants hote hain,inka use Sirf Pattern ke sath use hote hain
+| Flag | Constant                          | Use (Simple Language)             | Example                |
+| ---- | --------------------------------- | --------------------------------- | ---------------------- |
+| i    | `Pattern.CASE_INSENSITIVE`        | Upper/lower case ignore karega    | "abc" = "ABC"          |
+| m    | `Pattern.MULTILINE`               | ^ aur $ line-wise kaam karega     | multi-line text        |
+| s    | `Pattern.DOTALL`                  | `.` newline bhi match karega      | `.` → `\n` bhi         |
+| x    | `Pattern.COMMENTS`                | regex me spaces/comments allow    | readable regex         |
+| u    | `Pattern.UNICODE_CASE`            | Unicode case matching             | non-English letters    |
+| d    | `Pattern.UNIX_LINES`              | sirf `\n` ko newline maanega      | OS independent         |
+| U    | `Pattern.UNICODE_CHARACTER_CLASS` | Unicode character classes         | \w etc Unicode support |
+| L    | `Pattern.LITERAL`                 | regex ko normal string treat kare | no special meaning     |
+| c    | `Pattern.CANON_EQ`                | Unicode equivalence match         | rare use               |
+
+
+
+                           2️⃣ Matcher Class :  Used to search for pattern
+                                      - Ye actual matching ka kaam karta hai
+                                      - Pattern se create hota hai
+                                      - Use: Matcher m = p.matcher("input string");
+                                  NOTE:- Matcher class implements the MatchResult Interface. It is a regex engine which is used to perform match operations on a character sequence.
+🔷 4. Important Matcher Methods
+👉 Ye Matcher class ke methods hain, aur inka use Pattern ke sath hota hai
+| Method    | Use                  |
+| --------- | -------------------- |
+| find()    | next match find kare |
+| matches() | full string match    |
+| group()   | matched value        |
+| start()   | start index          |
+| end()     | end index            |
+
+
+                           3️⃣ PatternSyntaxException :  Indicates syntax error in a regualr expression pattern.
+                                      - Jab regex me syntax error hoti hai tab throw hota hai
+                                      - Ye unchecked exception hai
+                                      - Iske andar ye sab aata hai:
+
+                                                 📌 🔹 Regex Expressions :
+                                        ----------------------------------------------- 
+
+1. Character Classes :  
+Character Class ka matlab hai: ek set of characters define karna jisme se koi ek match ho.
+
+📊 Character Classes Table
+| Pattern         | Meaning (Simple)                      | Example Match          |
+| --------------- | ------------------------------------- | ---------------------- |
+| `[abc]`         | a, b, ya c me se koi ek               | a, b                   |
+| `[^abc]`        | a, b, c ke alawa kuch bhi             | d, x                   |
+| `[a-z]`         | chhote letters (a se z)               | m, z                   |
+| `[A-Z]`         | capital letters (A se Z)              | G, T                   |
+| `[0-9]`         | digits (0 se 9)                       | 5, 9                   |
+| `[a-zA-Z]`      | saare alphabets (small + capital)     | a, Z                   |
+| `[a-zA-Z0-9]`   | alphanumeric (letters + numbers)      | A, 7                   |
+| `[a-d[m-p]]`    | a-d ya m-p (union)                    | b, n -> man ✔         |
+| `[a-z&&[def]]`  | a-z me se sirf d, e, f (intersection) | d, e                   |
+| `[a-z&&[^bc]]`  | a-z me se b aur c hata do             | a, d                   |
+| `[a-z&&[^m-p]]` | a-z me se m se p tak hata do          | a, z (but not m,n,o,p) |
+
+Note:- 
+  [ ]   : Ye OR operator jaisa behave karta hai.
+            eg - [abc] => a OR b OR c (inme se koi ek).
+  [^ ] = NOT (negation)
+        eg - [^abc] => a, b, c ko छोड़कर kuch bhi.
+
+Example in code intellij IDEA .
+
+
+
+📌 Quantifiers 
+- Quantifiers operator hai jo character/class ke saath use hota hai.
+- Quantifiers batate hain ki koi character ya pattern kitni baar repeat hoga.
+
+📊 Quantifiers Table
+| Pattern  | Meaning (Simple)                            | Example Match          |
+| -------- | ------------------------------------------- | ---------------------- |
+| `a?`     | 'a' occues 1 baar ya not at all             | "", a                  |
+| `a+`     | kam se kam 1 baar  or more times            | a, aaa                 |
+| `a*`     | 'a' occurs 0 or more times                  | "", a, aaa             |
+| `a{n}`   | exactly n times                             | a{3} → aaa             |
+| `a{n,}`  | kam se kam n baar or more times             | a{2,} → aa, aaa        |
+| `a{n,m}` | n se m ke beech                             | a{2,5} → aa, aaa, aaaa |
+| `.*`     | kisi bhi character ka 0 ya zyada repetition | abc, 123               |
+| `.+`     | kisi bhi character ka at least 1 repetition | a, xyz                 |
+
+Example in code intellij IDEA .
+
+
+
+📌 Metacharacters table :
+
+| Pattern         | Meaning (Simple)                      | Example Match          |
+| --------------- | ------------------------------------- | ---------------------- |
+| `.`             | koi bhi ek character (except newline) | a, 1, @                |
+| `\\d`           | digit (same as `[0-9]`)               | 3                      |
+| `\\D`           | non-digit                             | a, @                   |
+| `\\w`           | word character (a-z, A-Z, 0-9, _)     | a, 1, _                |
+| `\\W`           | non-word character                    | @, #                   |
+| `\\s`           | whitespace (space, tab, newline)      | " "                    |
+| `\\S`           | non-whitespace                        | a, 1                   |
+
+
+Example in code intellij IDEA . along with characters class in r3 folder.
+
+
+
+📌 Escape Characters :
+Escape (\) ka use special characters ko normal (literal) banane ke liye hota hai.
+
+📊 Complete Escape Characters Table
+| Pattern | Literal Meaning (Simple) | Kyu Escape kiya?                     |
+| ------- | ------------------------ | ------------------------------------ |
+| `\.`    | dot (.)                  | `.` normally any character hota hai  |
+| `\*`    | star (*)                 | `*` repetition ke liye use hota hai  |
+| `\+`    | plus (+)                 | `+` one or more ke liye hota hai     |
+| `\?`    | question mark (?)        | `?` optional hota hai                |
+| `\^`    | caret (^)                | `^` start of string hota hai         |
+| `\$`    | dollar ($)               | `$` end of string hota hai           |
+| `\(`    | opening bracket (        | grouping ke liye use hota hai        |
+| `\)`    | closing bracket )        | grouping ke liye use hota hai        |
+| `\[`    | opening square bracket [ | character class start karta hai      |
+| `\]`    | closing square bracket ] | character class end karta hai        |
+| `\{`    | opening curly brace {    | quantifier start karta hai           |
+| `\}`    | closing curly brace }    | quantifier end karta hai             |
+| `\|`    | pipe ( | )               | OR condition ke liye use hota hai    |
+| `\\`    | backslash ( \ )          | escape character khud hi special hai |
+
+
+📌 Flow (Important) 
+   - Regex likho
+   - Pattern compile karo
+   - Matcher se input pe apply karo
+
+
+🧠 Simple Understanding
+   👉 Pattern = Regex rule
+   👉 Matcher = Check karne wala engine
+   👉 Exception = Error handle karne ke liye
