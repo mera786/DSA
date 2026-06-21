@@ -1,0 +1,98 @@
+package r3;
+
+import java.util.Scanner;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
+
+public class Demo {
+    public static void main(String[] args) {
+//        System.out.println(Pattern.matches("[amn]","abcd")); // false (not a or m or n)
+//        System.out.println(Pattern.matches("[amn]","a")); // true (because single a present which we're looking for
+//        System.out.println(Pattern.matches("[amn]","ammmna")); // false (a and m comes more than once
+//        System.out.println(Pattern.matches("[amn]","n")); // true
+//        System.out.println(Pattern.matches("[amn]","m")); // true
+//        System.out.println(Pattern.matches("[amn]","amn")); // false ( because single hee hona chahiye)
+//
+//        System.out.println(Pattern.matches("[^amn]","abcd")); // false ( because 'a' present hai)
+//        System.out.println(Pattern.matches("[^amn]","gbcd")); // false ( because more than once character)
+//        System.out.println(Pattern.matches("[^amn]","g")); // true
+//
+//
+//        System.out.println(Pattern.matches("[a-zA-Z]","b")); // true
+//        System.out.println(Pattern.matches("[a-zA-Z]","B")); // true
+//        System.out.println(Pattern.matches("[a-zA-Z]","bag")); // false ( more than once)
+
+
+//        System.out.println(Pattern.matches("\\d","abc")); // false (non-digit)
+//        System.out.println(Pattern.matches("\\d","1")); // true (digit and comes once)
+//        System.out.println(Pattern.matches("\\d","4443")); // false ( digit but comes more than once)
+//        System.out.println(Pattern.matches("\\d","323abc")); // false (digit and char)
+
+
+//        System.out.println(Pattern.matches("\\D","abc")); // false (non-digit but comes more than once)
+//        System.out.println(Pattern.matches("\\D","1")); // false (digit)
+//        System.out.println(Pattern.matches("\\D","4443")); // false (digit)
+//        System.out.println(Pattern.matches("\\D","323abc")); // false (digit and char)
+//        System.out.println(Pattern.matches("\\D","m")); // true (non-digit and comes once)
+//        System.out.println(Pattern.matches("\\D","$")); // true (neither non-digit nor digit but consider in non-digit )
+//
+//        System.out.println(Pattern.matches("\\D*","mak"));// true (non-digit and may come 0 or more )
+
+
+
+        // MIXED
+//        System.out.println(Pattern.matches("[a-zA-Z0-9]{6}","alam18")); // true
+//        System.out.println(Pattern.matches("[a-zA-Z0-9]{6}","merazalam18")); // false(more than 6 char)
+//        System.out.println(Pattern.matches("[a-zA-Z0-9]{6}","JA2Uk2")); // true
+//        System.out.println(Pattern.matches("[a-zA-Z0-9]{6}","alam$8")); // false($ is not matched)
+
+//        System.out.println(Pattern.matches("[789]{1}[0-9]{9}","9953038949")); // true (total = 10)
+//        System.out.println(Pattern.matches("[789][0-9]{9}","9953038949")); // true
+//        System.out.println(Pattern.matches("[789][0-9]{9}","99530389490")); // false (11 characters)
+//        System.out.println(Pattern.matches("[789][0-9]{9}","6953038949")); // false (start from 6)
+//        System.out.println(Pattern.matches("[789][0-9]{9}","8853038949")); // true
+//
+//        // by metacharacters
+//        System.out.println(Pattern.matches("[789]{1}\\d{9}","8853038949")); // true
+//        System.out.println(Pattern.matches("[789]{1}\\d{9}","3853038949")); // false (start from 3)
+
+        Scanner sc = new Scanner(System.in);
+
+        while (true) {
+            System.out.println("Enter regex pattern (type 'exit' to quit): ");
+            String regexPattern = sc.nextLine();
+
+            if (regexPattern.equalsIgnoreCase("exit")) {
+                break;
+            }
+
+            System.out.println("Enter text: ");
+            String text = sc.nextLine();
+
+            try {
+                Pattern pattern = Pattern.compile(regexPattern);
+                Matcher matcher = pattern.matcher(text);
+
+                boolean found = false;
+
+                while (matcher.find()) {
+                    System.out.println("Found: " + matcher.group() +
+                            " at index " + matcher.start() +
+                            " to " + matcher.end());
+                    found = true;
+                }
+
+                if (!found) {
+                    System.out.println("No match found.");
+                }
+
+            } catch (Exception e) {
+                System.out.println("Invalid regex pattern!");
+            }
+        }
+
+        sc.close();
+
+
+    }
+}
